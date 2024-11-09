@@ -1,4 +1,4 @@
-type EnvironmentsVariables = "VITE_API_URL" | "VITE_PUBLIC_API_KEY" | "VITE_PRIVATE_API_KEY";
+type EnvironmentsVariables = "VITE_API_URL" | "VITE_PUBLIC_API_KEY";
 
 export function throwIfNotDefined(key: EnvironmentsVariables): string {
   const value = import.meta.env[key];
@@ -8,8 +8,7 @@ export function throwIfNotDefined(key: EnvironmentsVariables): string {
   return value;
 }
 
-export const EnvVariables = {
+export const envVariables = {
   VITE_API_URL: throwIfNotDefined("VITE_API_URL"),
   VITE_PUBLIC_API_KEY: throwIfNotDefined("VITE_PUBLIC_API_KEY"),
-  VITE_PRIVATE_API_KEY: throwIfNotDefined("VITE_PRIVATE_API_KEY"),
 };

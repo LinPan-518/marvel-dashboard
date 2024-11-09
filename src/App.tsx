@@ -2,13 +2,18 @@ import React from "react";
 import ErrorBoundary from "@/page/error/errorBoundary";
 import { RouterProvider } from "react-router-dom";
 import { routes } from "./routes";
+import { SWRConfig } from "swr";
 
+const swrConfig = {
+  revalidateOnFocus: false,
+  revalidateFirstPage: false,
+};
 const App: React.FC = () => {
   return (
     <ErrorBoundary>
-      <main className="w-screen h-screen flex flex-col">
+      <SWRConfig value={swrConfig}>
         <RouterProvider router={routes} />
-      </main>
+      </SWRConfig>
     </ErrorBoundary>
   );
 };

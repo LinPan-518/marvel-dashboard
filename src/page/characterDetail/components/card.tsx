@@ -1,12 +1,12 @@
-import { Comics, Series, Stories, Events } from "@/lib/types";
+import { Comics, Series, Stories, Events } from "@/@types/character";
 import icon from "@/assets/logo-small.svg";
 import { useState } from "react";
-import { FaChevronDown, FaChevronUp } from "react-icons/fa"; // Using FontAwesome icons
+import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 import Button from "@/component/button";
-type CharacterDetail = Comics | Series | Stories | Events;
+export type CharacterCategory = Comics | Series | Stories | Events;
 
 type CharacterDetailProps = {
-  data: CharacterDetail;
+  data: CharacterCategory;
   name: string;
 };
 
@@ -34,7 +34,7 @@ export default function Card({ data, name }: CharacterDetailProps) {
       </div>
 
       {isExpanded && (
-        <div className="bg-red-100 p-4 rounded-lg shadow-md">
+        <div className="bg-red-500 p-4 rounded-lg shadow-md">
           {/* Conditionally render the list based on isExpanded */}
           <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
             {data.items.map((item) => (

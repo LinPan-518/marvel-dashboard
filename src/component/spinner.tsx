@@ -13,7 +13,7 @@ const Spinner: React.FC<SpinnerProps> = ({ size = 24, color = "border-blue-500" 
         width: size,
         height: size,
       }}
-    ></div>
+    />
   );
 };
 

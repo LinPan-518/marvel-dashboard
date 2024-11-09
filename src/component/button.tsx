@@ -1,14 +1,13 @@
 import React from "react";
-import { FaChevronUp, FaChevronDown } from "react-icons/fa"; // Import icons for testing
 
 type ButtonProps = {
   label?: string;
   onClick?: () => void;
   type?: "button" | "submit" | "reset";
-  variant?: "primary" | "secondary" | "danger" | "icon-only"; // New variant for icon-only
+  variant?: "primary" | "secondary" | "danger" | "icon-only";
   disabled?: boolean;
   className?: string;
-  icon?: React.ReactNode; // New prop to pass an icon for the button
+  icon?: React.ReactNode;
 };
 
 const Button: React.FC<ButtonProps> = ({
@@ -37,7 +36,7 @@ const Button: React.FC<ButtonProps> = ({
       disabled={disabled}
       className={`${combinedStyles} ${disabled ? "opacity-50 cursor-not-allowed" : ""}`}
     >
-      {icon || label} {/* If icon is passed, it will be rendered, otherwise fallback to label */}
+      {icon || label}
     </button>
   );
 };

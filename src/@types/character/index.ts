@@ -1,7 +1,4 @@
-export interface Thumbnail {
-  extension: string;
-  path: string;
-}
+import { ResponseSchema, Thumbnail } from "@/@types/response";
 
 export interface Character {
   id: string;
@@ -17,25 +14,7 @@ export interface Character {
   events: Events;
 }
 
-export type ResponseSchema<Result> = {
-  code: number;
-  status: string;
-  copyright: string;
-  attributionText: string;
-  attributionHTML: string;
-  etag: string;
-  data: Data<Result>;
-};
-
 export type CharactersResponse = ResponseSchema<Character>;
-
-export type Data<Result> = {
-  offset: number;
-  limit: number;
-  total: number;
-  count: number;
-  results: Result[];
-};
 
 export type Comics = {
   available: number;
@@ -71,23 +50,9 @@ export type Events = {
   returned: number;
 };
 
-export interface TableHeader {
-  label: string;
-  sortable: boolean;
-  key: string;
-}
-
 interface Url {
   type: string;
   url: string;
 }
 
-// export interface MarvelResponseData<T> {
-//   total: number;
-//   results: T[];
-// }
-
-// export interface MarvelResponse<T> {
-//   attributionText: string;
-//   data: MarvelResponseData<T>;
-// }
+export type OrderType = "name" | "-name" | "modified" | undefined;

@@ -1,50 +1,83 @@
-# React + TypeScript + Vite
+# Marvel Character Dashboard
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project is a Marvel Character Dashboard built with React and TypeScript. It allows users to search for Marvel characters, view character details, and sort characters by name. The application is styled using Tailwind CSS and leverages SWR for efficient data fetching.
 
-Currently, two official plugins are available:
+Demo: [Marvel Dashboard](https://marvel-dashboard-omega.vercel.app/) deployed and supported by [Vercel](https://vercel.com/).
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Tools for usage
 
-## Expanding the ESLint configuration
+- [React](https://react.dev/) for front-end implementation.
+- [Marvel API](https://developer.marvel.com/) for providing the character data.
+- [Vite](https://vitejs.dev/) for the build tool.
+- [Tailwind CSS](https://tailwindcss.com/) for the styling framework.
+- [SWR](https://swr.vercel.app/) for data fetching.
+- [Typescript](https://www.typescriptlang.org/) for the strongly typed programming.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Features
 
-- Configure the top-level `parserOptions` property like this:
+- **Search Characters/Comics**: Enter a character name in the search bar to filter characters.
+- **View Character/Comic Details**: Click on a character/comic name in the table to view more details.
+- **Sorting**: Characters can be sorted by name in ascending or descending order.
+- **Reusable Table Component**: The table component is designed to be reusable for displaying character and comic list.
+- **Responsive Design**: Styled with Tailwind CSS for a responsive and modern UI.
+- **Error Handling and Loading States**: Apply error boundary for proper error handling and loading states for API requests.
+- **Infinite Scrolling**: Utilizes `useSWR`, `useSWRInfinite` for efficient data fetching and infinite scrolling to fetch characters as many as possible.
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+## Getting Started
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+### Prerequisites
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+- Node.js
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+### Installation
+
+1. Clone the repository:
+
+   ```sh
+   https://github.com/LinPan-518/marvel-dashboard.git
+   cd marvel-dashboard
+   ```
+
+2. Install dependencies:
+
+   ```sh
+   npm install
+   ```
+
+3. In the `.env` file in the root directory and add your Marvel API credentials:
+
+   ```.env
+   VITE_API_URL="https://gateway.marvel.com/v1/public"
+   VITE_PUBLIC_API_KEY="your_public_api_key"
+   ```
+
+### Running the Application
+
+1. Start the development server:
+
+   ```sh
+   npm run dev
+   ```
+
+2. Open your browser and navigate to http://localhost:5173.
+
+### Building for Production
+
+1. Build the application:
+
+   ```sh
+   npm run build
+   ```
+
+2. Preview the application:
+
+   ```sh
+   npm run preview
+   ```
+
+### Project Structure
+
+- **src/component**: Contains the reusable components.
+- **src/page**: Pages for displaying the list of Marvel characters/comics and details.
+- **src/hook**: Custom hooks for fetching data using SWR.
+- **src/services**: API client and environment variables configuration.

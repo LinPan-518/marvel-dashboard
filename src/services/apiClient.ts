@@ -1,13 +1,5 @@
 import axios, { AxiosInstance, AxiosError, AxiosResponse } from "axios";
-import { EnvVariables } from "./variables";
-import md5 from "md5";
-
-const publicKey = EnvVariables.VITE_PUBLIC_API_KEY;
-const privateKey = EnvVariables.VITE_PRIVATE_API_KEY;
-
-const generateHash = (timeStamp: number) => {
-  return md5(timeStamp + privateKey + publicKey);
-};
+import { envVariables } from "./variables";
 
 const catchErrorCodes = [
   { code: "401", path: "/error_401_no_accounts" },
@@ -19,37 +11,20 @@ const catchErrorCodes = [
 
 // Create an Axios instance
 const axiosInstance: AxiosInstance = axios.create({
-  baseURL: EnvVariables.VITE_API_URL,
+  baseURL: envVariables.VITE_API_URL,
   headers: {
     "Content-Type": "application/json",
   },
+  params: {
+    apikey: envVariables.VITE_PUBLIC_API_KEY,
+  },
 });
 
-// Request interceptor to add authorization header
-axiosInstance.interceptors.request.use(
-  (config) => {
-    // Ensure params exists and add default parameters
-    if (!config.params) {
-      config.params = {};
-    }
-    const timeStamp = new Date().getTime();
-    config.params.apikey = EnvVariables.VITE_PUBLIC_API_KEY;
-    config.params.ts = timeStamp;
-    config.params.hash = generateHash(timeStamp);
-    return config;
-  },
-  (error) => {
-    return Promise.reject(error);
-  }
-);
-
-// Add a response interceptor
 axiosInstance.interceptors.response.use(
   (response: AxiosResponse) => response,
   (error: AxiosError) => {
     if (error.response) {
       const statusCode = error.response.status?.toString();
-      console.log(statusCode);
       // Handle specific status codes
       const errorPage = catchErrorCodes.find((e) => e.code === statusCode);
       if (errorPage) {
